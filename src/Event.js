@@ -1,5 +1,5 @@
 import { BADGE } from './constants/badges.js';
-import { EVENT, FREE_PRICE, FREE_COUNT, SANTA_PRICE, STAR_PRICE, TREE_PRICE, DEFAULT } from './constants/events.js';
+import { EVENT, FREE_PRICE, FREE_COUNT, SANTA_PRICE, STAR_PRICE, TREE_PRICE, DEFAULT, ZERO } from './constants/events.js';
 import { benefit } from './variables/benefits.js';
 
 class Event {
@@ -33,7 +33,7 @@ class Event {
     const customerBenefit = [];
 
     Object.keys(benefit).forEach(key => {
-      if (benefit[key] !== 0) {
+      if (benefit[key] !== ZERO) {
         customerBenefit.push([EVENT[key], benefit[key]]);
       }
     });
@@ -42,7 +42,7 @@ class Event {
   }
 
   calculateTotalBenefit() {
-    return Object.values(benefit).reduce((acc, value) => acc + value, 0);
+    return Object.values(benefit).reduce((acc, value) => acc + value, ZERO);
   }
 
   calculateTotalPay() {

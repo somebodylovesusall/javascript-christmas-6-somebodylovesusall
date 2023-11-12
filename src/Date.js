@@ -2,6 +2,7 @@ import { WEEKDAYS, WEEKENDS, SPECIALS, CHRISTMAS, START_DATE, END_DATE } from '.
 import { ZERO, SPECIAL_PRICE, START_PRICE, ADD_PRICE, ONE } from './constants/events.js';
 import { ERROR } from './constants/messages.js';
 import { discount } from './variables/discounts.js';
+import { benefit } from './variables/benefits.js';
 
 class Date {
   #date;
@@ -50,17 +51,15 @@ class Date {
   }
 
   calculateDiscount() {
-    let dateDiscount = ZERO;
-
     if (discount.christmas) {
-      dateDiscount = dateDiscount + START_PRICE + ADD_PRICE * (this.#date - ONE);
+      benefit.christmas = START_PRICE + ADD_PRICE * (this.#date - ONE);
     }
 
     if (discount.specials) {
-      dateDiscount = dateDiscount + SPECIAL_PRICE;
+      benefit.specials = SPECIAL_PRICE;
     }
 
-    return dateDiscount;
+    return benefit.christmas + benefit.specials;
   }
 }
 
