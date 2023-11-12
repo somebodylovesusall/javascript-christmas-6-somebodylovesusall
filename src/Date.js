@@ -12,7 +12,7 @@ class Date {
   }
 
   #validate(date) {
-    if (!Number(date) || !Number.isInteger(Number(price))) {
+    if (!Number(date) || !Number.isInteger(Number(date))) {
       throw new Error(ERROR.not_a_valid_date);
     }
 
