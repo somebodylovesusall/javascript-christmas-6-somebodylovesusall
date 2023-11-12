@@ -1,23 +1,29 @@
-import { BADGE, SANTA_PRICE, STAR_PRICE, TREE_PRICE } from './constants/badges.js';
-import { EVENT, ZERO, CHAMPAGNE_COUNT, DEFAULT } from './constants/events.js';
+import { BADGE } from './constants/badges.js';
+import { EVENT, FREE_PRICE, FREE_COUNT, SANTA_PRICE, STAR_PRICE, TREE_PRICE, DEFAULT } from './constants/events.js';
 import { benefit } from './variables/benefits.js';
 
 class Event {
   #totalOrder;
+  #totalDiscount;
   
   constructor(totalOrder) {
     this.#totalOrder = totalOrder;
   }
 
+  getTotalOrder() {
+    return this.#totalOrder;
+  }
+
   calculateTotalDiscount(dateDiscount, menuDiscount) {
-    return dateDiscount + menuDiscount;
+    this.#totalDiscount = dateDiscount + menuDiscount;
+    return this.#totalDiscount;
   }
 
   showFree() {
     let free = DEFAULT;
 
-    if (benefit.free !== ZERO) {
-      free = CHAMPAGNE_COUNT;
+    if (benefit.free === FREE_PRICE) {
+      free = FREE_COUNT;
     }
 
     return free;
@@ -40,7 +46,7 @@ class Event {
   }
 
   calculateTotalPay() {
-    return this.#totalOrder - this.calculateTotalDiscount();
+    return this.#totalOrder - this.#totalDiscount;
   }
 
   awardBadge() {
