@@ -21,7 +21,6 @@ const ERROR = Object.freeze({
 });
 
 const DECEMBER = '12월 ';
-const DEFAULT = '없음';
 const COUNT = '개';
 const WON = '원';
 const MINUS = '-';
@@ -29,4 +28,4 @@ const HYPHEN = '-';
 const COMMA = ',';
 const LINE_BREAK = '\n';
 
-export { INPUT, OUTPUT, ERROR, DECEMBER, DEFAULT, COUNT, WON, MINUS, HYPHEN, COMMA, LINE_BREAK };
+export { INPUT, OUTPUT, ERROR, DECEMBER, COUNT, WON, MINUS, HYPHEN, COMMA, LINE_BREAK };
