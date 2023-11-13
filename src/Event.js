@@ -38,6 +38,10 @@ class Event {
       }
     });
 
+    if (customerBenefit.length === ZERO) {
+      return DEFAULT;
+    }
+
     return customerBenefit;
   }
 
