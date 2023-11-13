@@ -23,9 +23,10 @@ const ERROR = Object.freeze({
 const DECEMBER = '12월 ';
 const COUNT = '개';
 const WON = '원';
+const KO_KR = 'ko-KR';
 const MINUS = '-';
 const HYPHEN = '-';
 const COMMA = ',';
 const LINE_BREAK = '\n';
 
-export { INPUT, OUTPUT, ERROR, DECEMBER, COUNT, WON, MINUS, HYPHEN, COMMA, LINE_BREAK };
+export { INPUT, OUTPUT, ERROR, DECEMBER, COUNT, WON, KO_KR, MINUS, HYPHEN, COMMA, LINE_BREAK };
