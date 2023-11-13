@@ -57,9 +57,9 @@ describe('이벤트 클래스 테스트', () => {
   });
 
   test('할인 후 예상 결제 금액을 계산한다.', () => {
-    const totalDiscount = event.calculateTotalDiscount(2200, 4046);
+    event.calculateTotalDiscount(2200, 4046);
     const totalPay = event.calculateTotalPay();
-  
+
     expect(totalPay).toBe(135754);
   });
 
