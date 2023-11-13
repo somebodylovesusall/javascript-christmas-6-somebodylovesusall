@@ -8,7 +8,6 @@ const InputView = {
     try {
       const input = await MissionUtils.Console.readLineAsync(`${INPUT.date}${LINE_BREAK}`);
       const date = new Date(input);
-
       return date;
     } catch (error) {
       MissionUtils.Console.print(error.message);
@@ -20,7 +19,6 @@ const InputView = {
     try {
       const input = await MissionUtils.Console.readLineAsync(`${INPUT.order}${LINE_BREAK}`);
       const order = new Order(input.split(COMMA));
-
       return order;
     } catch (error) {
       MissionUtils.Console.print(error.message);
@@ -28,8 +26,5 @@ const InputView = {
     }
   },
 }
-
-await InputView.enterDate();
-await InputView.enterOrder();
 
 export default InputView;
