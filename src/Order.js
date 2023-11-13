@@ -77,15 +77,15 @@ class Order {
   }
 
   calculateDiscount() {
-    if (this.#totalOrder < MIN_EVENT_PRICE) return;
+    if (this.#totalOrder < MIN_EVENT_PRICE) {
+      return ZERO;
+    }
 
     if (discount.weekdays) {
       const dessertCount = Object.keys(this.#orders).filter(key => Object.keys(DESSERT).includes(key)).reduce((sum, key) => sum + this.#orders[key], ZERO);
       benefit.weekdays = dessertCount * WEEK_PRICE;
       return benefit.weekdays;
-    }
-
-    if (discount.weekends) {
+    } else if (discount.weekends) {
       const mainCount = Object.keys(this.#orders).filter(key => Object.keys(MAIN).includes(key)).reduce((sum, key) => sum + this.#orders[key], ZERO);
       benefit.weekends = mainCount * WEEK_PRICE;
       return benefit.weekends;
