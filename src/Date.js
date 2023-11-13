@@ -1,8 +1,8 @@
 import { WEEKDAYS, WEEKENDS, SPECIALS, CHRISTMAS, START_DATE, END_DATE } from './constants/dates.js';
 import { SPECIAL_PRICE, START_PRICE, ADD_PRICE, ONE } from './constants/events.js';
 import { ERROR } from './constants/messages.js';
-import { discount } from './variables/discounts.js';
 import { benefit } from './variables/benefits.js';
+import { discount } from './variables/discounts.js';
 
 class Date {
   #date;
