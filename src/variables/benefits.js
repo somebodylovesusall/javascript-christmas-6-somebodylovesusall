@@ -1,9 +1,11 @@
+import { ZERO } from '../constants/events.js';
+
 const benefit = {
-  christmas: 0,
-  weekdays: 0,
-  weekends: 0,
-  specials: 0,
-  free: 0,
+  christmas: ZERO,
+  weekdays: ZERO,
+  weekends: ZERO,
+  specials: ZERO,
+  free: ZERO,
 };
 
 export { benefit };
