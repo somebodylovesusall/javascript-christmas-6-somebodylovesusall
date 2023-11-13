@@ -1,8 +1,8 @@
 import { MIN_FREE_PRICE, MAX_ORDER_COUNT, MIN_EVENT_PRICE, ONE, WEEK_PRICE, ZERO, FREE_PRICE } from './constants/events.js';
-import { WITH_DRINK, WITHOUT_DRINK, ONLY_DRINK, DESSERT, MAIN } from './constants/menus.js';
+import { WITH_DRINK, WITHOUT_DRINK, ONLY_DRINK, APPETIZER, MAIN, DESSERT, DRINK } from './constants/menus.js';
 import { ERROR, HYPHEN } from './constants/messages.js';
-import { discount } from './variables/discounts.js';
 import { benefit } from './variables/benefits.js';
+import { discount } from './variables/discounts.js';
 
 class Order {
   #orders;
@@ -69,7 +69,7 @@ class Order {
 
     Object.keys(this.#orders).forEach(key => {
       if (Object.keys(menus).includes(key)) {
-        this.#totalOrder = this.#totalOrder + (this.#orders[key] * APPETIZER[key]);
+        this.#totalOrder = this.#totalOrder + (this.#orders[key] * menus[key]);
       }
     });
 
@@ -96,6 +96,8 @@ class Order {
     if (this.#totalOrder >= MIN_FREE_PRICE) {
       benefit.free = FREE_PRICE;
     }
+
+    return benefit.free;
   }
 }
 
