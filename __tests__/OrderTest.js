@@ -34,7 +34,7 @@ describe('주문 클래스 테스트', () => {
     order.calculateTotalOrder();
     const menuDiscount = order.calculateDiscount();
 
-    expect(menuDiscount).toBeUndefined();
+    expect(menuDiscount).toBe(0);
   });
 
   test('평일이면 디저트 메뉴 1개당 2,023원을 할인한다.', () => {
