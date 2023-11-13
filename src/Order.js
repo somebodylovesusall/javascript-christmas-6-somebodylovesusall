@@ -1,5 +1,5 @@
 import { MIN_FREE_PRICE, MAX_ORDER_COUNT, MIN_EVENT_PRICE, ONE, WEEK_PRICE, ZERO, FREE_PRICE } from './constants/events.js';
-import { WITH_DRINK, WITHOUT_DRINK, ONLY_DRINK, APPETIZER, MAIN, DESSERT, DRINK } from './constants/menus.js';
+import { ONLY_MENU, ONLY_DRINK, APPETIZER, MAIN, DESSERT, DRINK } from './constants/menus.js';
 import { ERROR, HYPHEN } from './constants/messages.js';
 import { benefit } from './variables/benefits.js';
 import { discount } from './variables/discounts.js';
@@ -37,15 +37,15 @@ class Order {
       throw new Error(ERROR.not_a_valid_order);
     }
 
-    Object.keys(this.#orders).forEach(key => {
-      if (!WITH_DRINK.includes(key)) {
-        throw new Error(ERROR.not_a_valid_order);
-      }
+    const onlyMenu = Object.keys(this.#orders).every(key => ONLY_MENU.includes(key));
+    if (!onlyMenu) {
+      throw new Error(ERROR.not_a_valid_order);
+    }
 
-      if (!WITHOUT_DRINK.includes(key) && ONLY_DRINK.includes(key)) {
-        throw new Error(ERROR.not_a_valid_order);
-      }
-    });
+    const onlyDrink = Object.keys(this.#orders).every(key => ONLY_DRINK.includes(key));
+    if (onlyDrink) {
+      throw new Error(ERROR.not_a_valid_order);
+    }
   }
 
   #validateQuantity() {
