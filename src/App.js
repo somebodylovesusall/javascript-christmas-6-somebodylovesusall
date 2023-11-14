@@ -6,6 +6,8 @@ import OutputView from './views/OutputView.js';
 import Event from './Event.js';
 
 class App {
+  #event;
+
   async run() {
     this.initializeDiscount();
     this.initializeBenefit();
@@ -13,17 +15,11 @@ class App {
 
     const { date, dateDiscount } = await this.makeDate();
     const { order, totalOrder, menuDiscount, free } = await this.makeOrder();
-    const event = new Event(totalOrder);
-    const totalDiscount = event.calculateTotalDiscount(dateDiscount, menuDiscount);
+    
+    this.#event = new Event(totalOrder);
+    const totalDiscount = this.#event.calculateTotalDiscount(dateDiscount, menuDiscount);
 
-    OutputView.printPreview(date.getDate());
-    OutputView.printOrder(order.getOrders());
-    OutputView.printTotalOrder(totalOrder);
-    OutputView.printFree(event.showFree());
-    OutputView.printBenefit(event.showBenefit());
-    OutputView.printTotalBenefit(event.calculateTotalBenefit());
-    OutputView.printTotalPay(event.calculateTotalPay());
-    OutputView.printBadge(event.awardBadge());
+    this.printResult(date, order);
   }
 
   initializeDiscount() {
@@ -57,9 +53,17 @@ class App {
 
     return { order, totalOrder, menuDiscount, free };
   }
-}
 
-// const app = new App();
-// app.run();
+  printResult(date, order) {
+    OutputView.printPreview(date.getDate());
+    OutputView.printOrder(order.getOrders());
+    OutputView.printTotalOrder(this.#event.getTotalOrder());
+    OutputView.printFree(this.#event.showFree());
+    OutputView.printBenefit(this.#event.showBenefit());
+    OutputView.printTotalBenefit(this.#event.calculateTotalBenefit());
+    OutputView.printTotalPay(this.#event.calculateTotalPay());
+    OutputView.printBadge(this.#event.awardBadge());
+  }
+}
 
 export default App;
